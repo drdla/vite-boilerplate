@@ -3,9 +3,9 @@ import './page.css';
 import { Header } from './Header';
 import { useState } from 'react';
 
-type User = {
+interface User {
   name: string;
-};
+}
 
 export const Page = () => {
   const [user, setUser] = useState<User>();
