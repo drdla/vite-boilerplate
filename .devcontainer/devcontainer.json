@@ -1,0 +1,35 @@
+{
+  "name": "ViteBoilerplate",
+  "dockerComposeFile": ["docker-compose.yml"],
+  "service": "frontend",
+  "workspaceFolder": "/workspace",
+  "features": {},
+  "postCreateCommand": "yarn && yarn dev",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/zsh",
+        "editor.formatOnSave": true
+      },
+      "extensions": [
+        "bradlc.vscode-tailwindcss",
+        "christian-kohler.npm-intellisense",
+        "dbaeumer.vscode-eslint",
+        "editorconfig.editorconfig",
+        "esbenp.prettier-vscode",
+        "figma.figma-vscode-extension",
+        "formulahendry.auto-rename-tag",
+        "ms-vscode-remote.vscode-remote-extensionpack",
+        "streetsidesoftware.code-spell-checker",
+        "wix.vscode-import-cost",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "overrideCommand": false,
+  "portsAttributes": {
+    "5173": {
+      "label": "Vite app"
+    }
+  }
+}

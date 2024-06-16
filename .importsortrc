@@ -1,0 +1,32 @@
+{
+  ".ts, .tsx, .mdx": {
+    "parser": "typescript",
+    "style": "acala",
+    "options": {
+      "knownFirstParty": [
+        "~/"
+      ],
+      "knownComponent": [
+        "~/components"
+      ],
+      "knownModule": [
+        "~/modules"
+      ]
+    }
+  },
+  ".js, .jsx": {
+    "parser": "babylon",
+    "style": "acala",
+    "options": {
+      "knownFirstParty": [
+        "~/"
+      ],
+      "knownComponent": [
+        "~/components"
+      ],
+      "knownModule": [
+        "~/app"
+      ]
+    }
+  }
+}

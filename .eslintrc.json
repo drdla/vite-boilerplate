@@ -1,0 +1,66 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "extends": [
+    "next",
+    "prettier",
+    "plugin:testing-library/react",
+    "plugin:jest-dom/recommended",
+    "plugin:storybook/recommended"
+  ],
+  "plugins": ["sort-destructure-keys", "unused-imports"],
+  "rules": {
+    "react-hooks/rules-of-hooks": 0,
+    "react/display-name": 0,
+    "@next/next/no-img-element": 0,
+    "operator-assignment": [2, "always"],
+    "prefer-const": [
+      2,
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ],
+    "quote-props": [
+      2,
+      "as-needed",
+      {
+        "keywords": false,
+        "unnecessary": false
+      }
+    ],
+    "sort-destructure-keys/sort-destructure-keys": 2,
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "import/no-anonymous-default-export": "warn",
+    "react/no-unknown-property": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "jsx-a11y/alt-text": [
+      "warn",
+      {
+        "elements": ["img"],
+        "img": ["Image"]
+      }
+    ],
+    "jsx-a11y/aria-props": "warn",
+    "jsx-a11y/aria-proptypes": "warn",
+    "jsx-a11y/aria-unsupported-elements": "warn",
+    "jsx-a11y/role-has-required-aria-props": "warn",
+    "jsx-a11y/role-supports-aria-props": "warn",
+    "react/jsx-no-target-blank": "off"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "christian-kohler.npm-intellisense",
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "figma.figma-vscode-extension",
+    "formulahendry.auto-rename-tag",
+    "ms-vscode-remote.vscode-remote-extensionpack",
+    "streetsidesoftware.code-spell-checker",
+    "wix.vscode-import-cost"
+  ]
+}

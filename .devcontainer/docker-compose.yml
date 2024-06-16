@@ -1,0 +1,18 @@
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      target: dev # <-- this is the targeted build stage; you can also use "production"
+    restart: always
+    env_file:
+      - ../.env
+    environment:
+      - NODE_ENV=development
+    volumes:
+      # Mount the root folder to the workspace
+      - ..:/workspace:cached
+    ports:
+      - '5173:5173'
+    command: sleep infinity
