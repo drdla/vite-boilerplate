@@ -1,3 +1,3 @@
 # Vite Boilerplate
 
-...
+hello
