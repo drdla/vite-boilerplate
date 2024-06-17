@@ -1,5 +1,5 @@
 # Base image setup; use bullseye for better compatibility when building packages
-FROM node:20-bullseye AS base
+FROM node:21-bullseye AS base
 
 WORKDIR /app
 
