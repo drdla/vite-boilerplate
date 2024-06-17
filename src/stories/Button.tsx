@@ -1,5 +1,6 @@
-import clsx from 'clsx';
 import './button.css';
+
+import clsx from 'clsx';
 
 interface ButtonProps {
   /**

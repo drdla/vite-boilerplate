@@ -1,15 +1,15 @@
-import { useTranslation } from 'react-i18next';
 import viteLogo from '/vite.svg';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { Trans, useTranslation } from 'react-i18next';
 
 function App() {
   const [count, setCount] = useState(0);
 
   const { t } = useTranslation('frontend');
 
-  // Set local for update notice somewhere
-  // window.pluginWebUpdateNotice_.setLocale('zh_CN');
+  // Set locale for update notice somewhere
+  // window.pluginWebUpdateNotice_.setLocale('de_DE');
 
   return (
     <>
@@ -28,14 +28,16 @@ function App() {
 
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+          {t('count is {{count}}', { count })}
         </button>
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          <Trans i18nKey="app.editAppToTestHMR">
+            Edit <code>src/App.tsx</code> and save to test HMR
+          </Trans>
         </p>
       </div>
       <p className="text-2xl text-red-500">
-        Click on the Vite and React logos to learn more
+        {t('Click on the Vite and React logos to learn more')}
       </p>
     </>
   );

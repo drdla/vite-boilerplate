@@ -1,6 +1,5 @@
 // Add tailwind styles
 import './styles/index.css';
-
 // Initialize i18next
 import './lib/i18n.ts';
 

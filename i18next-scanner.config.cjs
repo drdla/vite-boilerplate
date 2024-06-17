@@ -15,7 +15,7 @@ module.exports = {
     trans: {
       component: 'Trans',
       defaultsKey: 'defaults',
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.tsx', '.ts'],
       fallbackKey: function (ns, value) {
         // Returns a hash value as the fallback key
         return sha1(value);
