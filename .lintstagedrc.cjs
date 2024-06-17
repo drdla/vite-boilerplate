@@ -13,4 +13,5 @@ export default {
     'i18next-resources-for-ts interface -i ./public/locales/en -o ./src/typings/i18n-resources.d.ts',
   ],
   '*.{js,cjs,mjs,jsx,ts,tsx,json,md}': ['prettier --write'],
+  '*.{css}': ['stylelint --fix'],
 };
