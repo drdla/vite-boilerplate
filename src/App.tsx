@@ -8,7 +8,7 @@ function App() {
 
   const { t } = useTranslation('frontend');
 
-  // Set locale for update notice somewhere
+  // Set locale for update notice somewhere.
   // window.pluginWebUpdateNotice_.setLocale('de_DE');
 
   return (
