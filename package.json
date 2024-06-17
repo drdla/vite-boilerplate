@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@plugin-web-update-notification/vite": "^1.7.1",
+    "@tanstack/react-query-devtools": "^5.45.1",
     "clsx": "^2.1.1",
     "i18next": "^23.11.5",
     "i18next-browser-languagedetector": "^8.0.0",
@@ -47,6 +48,7 @@
     "@storybook/react-vite": "^8.1.9",
     "@storybook/test": "^8.1.9",
     "@storybook/theming": "^8.1.9",
+    "@tanstack/eslint-plugin-query": "^5.43.1",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/react-helmet": "^6",
@@ -61,6 +63,7 @@
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.4",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-i18next": "^6.0.3",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jest-dom": "^5.4.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",

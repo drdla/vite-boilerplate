@@ -10,8 +10,10 @@
     "plugin:react/jsx-runtime",
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     "next",
     "prettier",
+    "plugin:i18next/recommended",
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended",
     "plugin:storybook/recommended"
@@ -66,5 +68,15 @@
     "jsx-a11y/role-has-required-aria-props": "warn",
     "jsx-a11y/role-supports-aria-props": "warn",
     "react/jsx-no-target-blank": "off"
-  }
+  },
+  "overrides": [
+    // Ignore internationalization errors in storybook files
+    {
+      "files": [".storybook/**/*", "**/*.stories.*", "src/stories/**/*"],
+      "rules": {
+        "i18next": "off",
+        "i18next/no-literal-string": "off"
+      }
+    }
+  ]
 }

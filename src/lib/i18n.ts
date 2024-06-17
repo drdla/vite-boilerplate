@@ -12,12 +12,11 @@ export type Locale = 'de';
 // Getting the current locale requires the languages to be whitelisted.
 export const currentLocale = (): Locale => i18n.languages[0] as Locale;
 
-i18n
+void i18n
   .use(Backend)
   .use(Fetch)
   // .use(LanguageDetector)
   .use(initReactI18next)
-  // @ts-expect-error // TODO: sort out TS error
   .init({
     backend: {
       backends: [
@@ -43,7 +42,6 @@ i18n
     lng: 'de', // if you're using a language detector, do not define the lng option.
     keySeparator: false, // Not needed as we do not use keys.
     ns: 'frontend',
-    whitelist: ['en', 'de'],
     react: {
       useSuspense: false,
     },
