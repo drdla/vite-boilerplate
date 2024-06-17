@@ -12,7 +12,7 @@
     "i18n": "yarn i18n:extract-keys && yarn i18n:i18next-resources-for-ts",
     "i18n:extract-keys": "i18next-scanner --config i18next-scanner.config.cjs",
     "i18n:i18next-resources-for-ts": "i18next-resources-for-ts interface -i ./public/locales/en -o ./src/typings/i18n-resources.d.ts",
-    "lint": "eslint --fix ./src",
+    "lint": "eslint --fix ./src && tsc --noEmit",
     "prepare": "husky",
     "prettier": "prettier --write --list-different \"src/**/*.{js,jsx,ts,tsx,json}\"",
     "preview": "vite preview",
