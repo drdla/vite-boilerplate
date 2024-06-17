@@ -1,0 +1,20 @@
+{
+  "css.validate": false,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.codeActionsOnSave": ["source.addMissingImports", "source.fixAll"],
+  "files.exclude": {
+    "**/.stylelintcache": true,
+    "**/.eslintcache": true,
+    "**/yarn.lock": true,
+    "**/coverage": true
+  },
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/dist": true,
+    "**/node_modules": true,
+    "build/": true
+  }
+}
