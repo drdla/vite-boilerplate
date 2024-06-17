@@ -5,6 +5,8 @@
 # validate-branch-name
 # npx validate-branch-name
 
+echo "Running pre-commit hook!"
+
 # lint and format staged files
 npx lint-staged
 
