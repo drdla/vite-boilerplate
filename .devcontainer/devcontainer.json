@@ -4,7 +4,7 @@
   "service": "frontend",
   "workspaceFolder": "/workspace",
   "features": {},
-  "postCreateCommand": "yarn && yarn dev",
+  "postCreateCommand": "yarn",
   "customizations": {
     "vscode": {
       "settings": {
