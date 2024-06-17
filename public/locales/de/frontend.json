@@ -1,9 +1,9 @@
 {
-  "Click on the Vite and React logos to learn more": "__STRING_NOT_TRANSLATED__",
+  "Click on the Vite and React logos to learn more": "Klick auf die Vite und React Logos um mehr zu erfahren",
   "This is an internationalized text!": "Das ist ein übersetzter Text!",
   "app.editAppToTestHMR": "Ändere und speichere <1>src/App.tsx</1> um HMR zu testen",
   "app.metaDescription": "Hier ist die Beschreibung",
   "app.metaTitle": "Vite Boilerplate drdla",
-  "count is {{count}}": "__STRING_NOT_TRANSLATED__",
-  "count is {{count}}_plural": "__STRING_NOT_TRANSLATED__"
+  "count is {{count}}": "Die Anzahl ist {{count}}",
+  "count is {{count}}_plural": "Die Anzahl ist {{count}}"
 }
