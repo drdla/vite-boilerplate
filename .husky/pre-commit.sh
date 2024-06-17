@@ -3,7 +3,7 @@
 
 npm test
 
-
+exit 1
 
 # #!/usr/bin/env sh
 
