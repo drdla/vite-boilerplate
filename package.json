@@ -21,6 +21,7 @@
     "sort-imports": "import-sort --write \"src/**/*.{js,jsx,ts,tsx,mdx}\" \"!src/**/*.d.ts\"",
     "storybook": "storybook dev -p 6006",
     "test:e2e": "playwright test",
+    "test:e2e:coverage": "nyc --reporter=lcov playwright test",
     "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {

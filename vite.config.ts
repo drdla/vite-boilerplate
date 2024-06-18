@@ -4,6 +4,7 @@ import browserslistToEsbuild from 'browserslist-to-esbuild';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { webUpdateNotice } from '@plugin-web-update-notification/vite';
 import webfontDownload from 'vite-plugin-webfont-dl';
+import istanbul from 'vite-plugin-istanbul';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,6 +23,11 @@ export default defineConfig({
   plugins: [
     tsconfigPaths(),
     react(),
+    istanbul({
+      include: ['src/**/*'], // files to track coverage on
+      exclude: ['node_modules'], // files to NOT track coverage on
+      requireEnv: false,
+    }),
     webfontDownload(),
     webUpdateNotice({
       notificationProps: {

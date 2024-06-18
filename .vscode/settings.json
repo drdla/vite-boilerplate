@@ -8,8 +8,7 @@
   "files.exclude": {
     "**/.stylelintcache": true,
     "**/.eslintcache": true,
-    "**/yarn.lock": true,
-    "**/coverage": true
+    "**/yarn.lock": true
   },
   "search.exclude": {
     "**/.yarn": true,
