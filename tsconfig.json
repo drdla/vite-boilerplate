@@ -29,8 +29,13 @@
       "~/*": ["./src/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "i18next-scanner.config.cjs"],
-  "exclude": ["node_modules"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "i18next-scanner.config.cjs",
+    "cypress.config.js"
+  ],
+  "exclude": ["node_modules", "**/*.cy.*"],
   "references": [
     {
       "path": "./tsconfig.node.json"

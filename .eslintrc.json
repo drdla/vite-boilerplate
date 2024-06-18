@@ -16,9 +16,10 @@
     "plugin:i18next/recommended",
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended",
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
+    "plugin:cypress/recommended"
   ],
-  "plugins": ["sort-destructure-keys", "unused-imports"],
+  "plugins": ["sort-destructure-keys", "unused-imports", "cypress"],
   "rules": {
     "react-hooks/rules-of-hooks": 0,
     "react/display-name": 0,
