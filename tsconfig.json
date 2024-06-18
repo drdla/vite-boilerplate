@@ -27,7 +27,9 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]
-    }
+    },
+
+    "types": ["vitest/globals"]
   },
   "include": ["**/*.ts", "**/*.tsx", "i18next-scanner.config.cjs"],
   "exclude": ["node_modules"],

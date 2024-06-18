@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import browserslistToEsbuild from 'browserslist-to-esbuild';
@@ -59,6 +61,14 @@ export default defineConfig({
   resolve: {
     alias: {
       '~/*': './src/*',
+    },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    include: ['**/*.test.*'], // Only run files with .test. in their name
+    coverage: {
+      provider: 'istanbul',
     },
   },
 });

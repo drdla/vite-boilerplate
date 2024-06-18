@@ -2,6 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests', // Look for test files in the "tests" directory, relative to this configuration file.
+  testMatch: '**/*.spec.*', // Only run files with .spec. in their name
   fullyParallel: true, // Run all tests in parallel
   forbidOnly: !!process.env.CI, // Fail the build on CI if you accidentally left test.only in the source code.
   retries: process.env.CI ? 2 : 0, // Retry on CI only.
