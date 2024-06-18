@@ -5,6 +5,9 @@ const config: StorybookConfig = {
     name: '@storybook/react-vite',
     options: {},
   },
+  core: {
+    builder: '@storybook/builder-vite',
+  },
   addons: [
     // The order of this list controls the sorting in the toolbar
     '@storybook/addon-essentials',
