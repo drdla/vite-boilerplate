@@ -1,7 +1,7 @@
 // Add tailwind styles
-import './styles/index.css';
+import '~/styles/index.css';
 // Initialize i18next
-import './lib/i18n.ts';
+import '~/lib/i18n.ts';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';

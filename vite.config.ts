@@ -58,11 +58,6 @@ export default defineConfig({
       logVersion: true,
     }),
   ],
-  resolve: {
-    alias: {
-      '~/*': './src/*',
-    },
-  },
   test: {
     globals: true,
     environment: 'jsdom',
