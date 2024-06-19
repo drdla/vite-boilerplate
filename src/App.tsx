@@ -2,6 +2,7 @@ import viteLogo from '/vite.svg';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Trans, useTranslation } from 'react-i18next';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -39,6 +40,7 @@ function App() {
       <p className="text-2xl text-red-500">
         {t('Click on the Vite and React logos to learn more')}
       </p>
+      <Outlet />
     </>
   );
 }

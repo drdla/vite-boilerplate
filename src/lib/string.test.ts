@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { trimSlash } from './string';
 
 describe('trimSlash', () => {
