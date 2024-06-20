@@ -1,5 +1,10 @@
-/*
- * See https://github.com/i18next/i18next-scanner#default-options for options
+/**
+ * This file configures the i18next-scanner.
+ * It scans the source code for translation functions and generate JSON files with the
+ * translations.
+ * Run 'yarn i18n' to generate/update the JSON translation files.
+ *
+ * @see {@link https://github.com/i18next/i18next-scanner#default-options}
  */
 
 const sha1 = require('sha1');
@@ -33,8 +38,7 @@ module.exports = {
     defaultLng: 'de',
     ns: ['frontend'],
     defaultNs: 'frontend',
-    nsSeparator: false,
-    keySeparator: false,
+    // keySeparator: false, // Set to false if working with a flat JSON file.
     defaultValue: '__STRING_NOT_TRANSLATED__',
     resource: {
       jsonIndent: 2,

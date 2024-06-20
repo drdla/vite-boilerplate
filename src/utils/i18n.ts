@@ -5,7 +5,7 @@
  * allows internationalization workflows where an internationalization service
  * (https://locize.com/, https://crowdin.com/, https://lokalise.com/)
  * places the translations in a CDN.
- * @See https://www.i18next.com/overview/configuration-options
+ * @see {@link https://www.i18next.com/overview/configuration-options}
  */
 
 import i18n from 'i18next';
@@ -49,7 +49,7 @@ void i18n
       escapeValue: false, // XSS protection - not needed as React escapes by default.
     },
     lng: 'de', // Set the language. Don't set when using a language detector!
-    keySeparator: false, // Not needed as we do not use keys.
+    // keySeparator: false, // Set to false if working with a flat JSON file.
     ns: 'frontend',
     react: {
       useSuspense: false,
