@@ -2,37 +2,47 @@ import { QueryClient } from '@tanstack/react-query';
 import { createBrowserRouter } from 'react-router-dom';
 
 import { contactLoader } from '~/modules/contacts';
-
-import App from '~/App';
 import Contact from '~/modules/contacts/Contact';
 import Contacts from '~/modules/contacts/Contacts';
+
+import { AppLayout } from '~/components/templates';
+
+import App from '~/App';
 
 const queryClient = new QueryClient();
 
 export const router = createBrowserRouter(
   [
     {
-      path: '/',
-      element: <App />,
+      element: <AppLayout />,
       children: [
         {
-          path: 'contacts',
-          // lazy: () => import('~/modules/contacts/Contacts'),
-          element: <Contacts />,
-          errorElement: (
-            <div>Something went wrong with rendering the Contacts route</div>
-          ),
+          path: '/',
+          element: <App />,
           children: [
             {
-              path: ':contactId',
-              // lazy: () => import('~/modules/contacts/Contact'),
-              element: <Contact />,
+              path: 'contacts',
+              // lazy: () => import('~/modules/contacts/Contacts'),
+              element: <Contacts />,
               errorElement: (
                 <div>
-                  Something went wrong with rendering the Contact details route
+                  Something went wrong with rendering the Contacts route
                 </div>
               ),
-              loader: contactLoader(queryClient),
+              children: [
+                {
+                  path: ':contactId',
+                  // lazy: () => import('~/modules/contacts/Contact'),
+                  element: <Contact />,
+                  errorElement: (
+                    <div>
+                      Something went wrong with rendering the Contact details
+                      route
+                    </div>
+                  ),
+                  loader: contactLoader(queryClient),
+                },
+              ],
             },
           ],
         },
