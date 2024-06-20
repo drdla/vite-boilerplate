@@ -21,11 +21,14 @@ module.exports = {
         return sha1(value);
       },
       i18nKey: 'i18nKey',
+      supportBasicHtmlNodes: true, // Keep name of simple nodes (e.g. <br/>) in translations instead of indexed keys.
+      keepBasicHtmlNodesFor: ['br', 'strong', 'i', 'p'],
     },
     interpolation: {
       prefix: '{{',
       suffix: '}}',
     },
+    compatibilityJSON: 'v4', // Enable current pluralization, see https://www.i18next.com/translation-function/plurals
     lngs: ['de', 'en'],
     defaultLng: 'de',
     ns: ['frontend'],

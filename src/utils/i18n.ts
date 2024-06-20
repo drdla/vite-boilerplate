@@ -1,4 +1,12 @@
-// See www.i18next.com/overview/configuration-options
+/**
+ * This file sets up internationalization (i18n) for the application with i18next.
+ * Translations are fetched from a backend and stored in local storage.
+ * Fetching translations instead of compiling them into the bundle
+ * allows internationalization workflows where an internationalization service
+ * (https://locize.com/, https://crowdin.com/, https://lokalise.com/)
+ * places the translations in a CDN.
+ * @See https://www.i18next.com/overview/configuration-options
+ */
 
 import i18n from 'i18next';
 // import LanguageDetector from 'i18next-browser-languagedetector';
@@ -33,13 +41,14 @@ void i18n
         },
       ],
     },
+    compatibilityJSON: 'v4', // Enable current pluralization, see https://www.i18next.com/translation-function/plurals
     debug: false,
     defaultNS: 'frontend',
     fallbackLng: 'de',
     interpolation: {
-      escapeValue: false, // Not needed for React as it escapes by default.
+      escapeValue: false, // XSS protection - not needed as React escapes by default.
     },
-    lng: 'de', // if you're using a language detector, do not define the lng option.
+    lng: 'de', // Set the language. Don't set when using a language detector!
     keySeparator: false, // Not needed as we do not use keys.
     ns: 'frontend',
     react: {

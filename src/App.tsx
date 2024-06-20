@@ -25,21 +25,18 @@ function App() {
         </a>
       </div>
 
-      <h1>{t('This is an internationalized text!')}</h1>
+      <h1>{t('app.i18nExample')}</h1>
 
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          {t('count is {{count}}', { count })}
+          {t('app.counterValue', { count })}
         </button>
         <p>
           <Trans i18nKey="app.editAppToTestHMR">
-            Edit <code>src/App.tsx</code> and save to test HMR
+            Edit <i>src/App.tsx</i> and save to test HMR
           </Trans>
         </p>
       </div>
-      <p className="text-2xl text-red-500">
-        {t('Click on the Vite and React logos to learn more')}
-      </p>
       <Outlet />
     </>
   );

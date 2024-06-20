@@ -1,9 +1,9 @@
 {
-  "Click on the Vite and React logos to learn more": "Klick auf die Vite und React Logos um mehr zu erfahren",
-  "This is an internationalized text!": "Das ist ein übersetzter Text!",
-  "app.editAppToTestHMR": "Ändere und speichere <1>src/App.tsx</1> um HMR zu testen",
+  "app.counterValue_one": "Du hat {{count}} Mal geklickt",
+  "app.counterValue_other": "Du hat {{count}} Mal geklickt (0/Plural)",
+  "app.editAppToTestHMR": "Edit <i>src/App.tsx</i> and save to test HMR",
+  "app.i18nExample": "Das ist ein übersetzter Text!",
   "app.metaDescription": "Hier ist die Beschreibung",
   "app.metaTitle": "Vite Boilerplate drdla",
-  "count is {{count}}": "Die Anzahl ist {{count}}",
-  "count is {{count}}_plural": "Die Anzahl ist {{count}}"
+  "contacts": "__STRING_NOT_TRANSLATED__"
 }

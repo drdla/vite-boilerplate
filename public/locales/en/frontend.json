@@ -1,9 +1,9 @@
 {
-  "Click on the Vite and React logos to learn more": "__STRING_NOT_TRANSLATED__",
-  "This is an internationalized text!": "__STRING_NOT_TRANSLATED__",
-  "app.editAppToTestHMR": "Edit <1>src/App.tsx</1> and save to test HMR",
-  "app.metaDescription": "__STRING_NOT_TRANSLATED__",
-  "app.metaTitle": "__STRING_NOT_TRANSLATED__",
-  "count is {{count}}": "__STRING_NOT_TRANSLATED__",
-  "count is {{count}}_plural": "__STRING_NOT_TRANSLATED__"
+  "app.counterValue_one": "You have clicked once",
+  "app.counterValue_other": "You have clicked {{count}} times",
+  "app.editAppToTestHMR": "Edit <i>src/App.tsx</i> and save to test HMR",
+  "app.i18nExample": "This is an internationalized text.",
+  "app.metaDescription": "This is the description",
+  "app.metaTitle": "Vite Boilerplate drdla",
+  "contacts": "Contacts"
 }
