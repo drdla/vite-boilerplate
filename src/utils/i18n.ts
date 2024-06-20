@@ -37,7 +37,7 @@ void i18n
           prefix: 'i18next_lng_',
         },
         {
-          loadPath: `/locales/{{lng}}/{{ns}}hello.json`,
+          loadPath: `/locales/{{lng}}/{{ns}}.json`,
         },
       ],
     },
