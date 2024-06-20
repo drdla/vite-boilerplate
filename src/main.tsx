@@ -1,7 +1,7 @@
 // Add tailwind styles
 import '~/styles/index.css';
 // Initialize i18next
-import '~/lib/i18n.ts';
+import '~/utils/i18n';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
