@@ -1,4 +1,4 @@
-import { ComponentType, lazy, LazyExoticComponent } from 'react';
+import { ComponentType, LazyExoticComponent, lazy } from 'react';
 
 type LazyLoadReturn<T> =
   | LazyExoticComponent<ComponentType<T>>
@@ -18,7 +18,11 @@ export const lazyLoad = <T = unknown>(
   namedExport?: string,
 ): LazyLoadReturn<T> =>
   lazy(() => {
-    const promise = import(importPath);
+    const promise = import(/* @vite-ignore */ importPath);
+    /*
+     * Vite can not resolve aliases in lazy imports and needs the file extension.
+     * @see https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
+     */
 
     if (!namedExport) {
       return promise;
