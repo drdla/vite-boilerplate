@@ -31,7 +31,7 @@ function Contact() {
     initialData,
   });
 
-  return <div>+{contact}</div>;
+  return <div>- {contact}</div>;
 }
 
 export default Contact;

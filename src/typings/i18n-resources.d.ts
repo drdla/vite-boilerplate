@@ -1,12 +1,17 @@
 interface Resources {
   frontend: {
-    'app.counterValue_one': 'You have clicked once';
-    'app.counterValue_other': 'You have clicked {{count}} times';
-    'app.editAppToTestHMR': 'Edit <i>src/App.tsx</i> and save to test HMR';
-    'app.i18nExample': 'This is an internationalized text.';
-    'app.metaDescription': 'This is the description';
-    'app.metaTitle': 'Vite Boilerplate drdla';
-    contacts: 'Contacts';
+    app: {
+      counterValue_one: '__STRING_NOT_TRANSLATED__';
+      counterValue_other: '__STRING_NOT_TRANSLATED__';
+      editAppToTestHMR: 'Edit <i>src/App.tsx</i> and save to test HMR';
+      i18nExample: '__STRING_NOT_TRANSLATED__';
+      metaDescription: '__STRING_NOT_TRANSLATED__';
+      metaTitle: '__STRING_NOT_TRANSLATED__';
+    };
+    contacts: {
+      fetchedContact: '__STRING_NOT_TRANSLATED__';
+      title: '__STRING_NOT_TRANSLATED__';
+    };
   };
 }
 

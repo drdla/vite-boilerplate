@@ -6,7 +6,7 @@ const Contacts = () => {
 
   return (
     <div>
-      {t('contacts')}
+      {t('contacts.title')}
       <Outlet />
     </div>
   );
