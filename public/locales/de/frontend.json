@@ -1,7 +1,7 @@
 {
   "app": {
-    "counterValue_one": "Du hat {{count}} Mal geklickt",
-    "counterValue_other": "Du hat {{count}} Mal geklickt (0/Plural)",
+    "counterValue_one": "Du hast {{count}} Mal geklickt",
+    "counterValue_other": "Du hast {{count}} Mal geklickt (0/Plural)",
     "editAppToTestHMR": "Edit <i>src/App.tsx</i> and save to test HMR",
     "i18nExample": "Das ist ein übersetzter Text!",
     "metaDescription": "Hier ist die Beschreibung",
