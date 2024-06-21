@@ -1,9 +1,7 @@
 import { QueryClient } from '@tanstack/react-query';
 import { createBrowserRouter } from 'react-router-dom';
 
-import { contactLoader } from '~/modules/contacts';
-import Contact from '~/modules/contacts/Contact';
-import Contacts from '~/modules/contacts/Contacts';
+import { Contact, Contacts, contactLoader } from '~/modules/contacts';
 
 import { AppLayout } from '~/components/templates';
 
@@ -19,30 +17,31 @@ export const router = createBrowserRouter(
         {
           path: '/',
           element: <App />,
+        },
+        {
+          path: '/contacts',
+          lazy: () =>
+            import('~/modules/contacts').then(({ Contacts }) => ({
+              default: Contacts,
+            })),
+          element: <Contacts />,
+          errorElement: (
+            <div>Something went wrong with rendering the Contacts route</div>
+          ),
           children: [
             {
-              path: 'contacts',
-              // lazy: () => import('~/modules/contacts/Contacts'),
-              element: <Contacts />,
+              path: ':contactId',
+              lazy: () =>
+                import('~/modules/contacts').then(({ Contact }) => ({
+                  default: Contact,
+                })),
+              element: <Contact />,
               errorElement: (
                 <div>
-                  Something went wrong with rendering the Contacts route
+                  Something went wrong with rendering the Contact details route
                 </div>
               ),
-              children: [
-                {
-                  path: ':contactId',
-                  // lazy: () => import('~/modules/contacts/Contact'),
-                  element: <Contact />,
-                  errorElement: (
-                    <div>
-                      Something went wrong with rendering the Contact details
-                      route
-                    </div>
-                  ),
-                  loader: contactLoader(queryClient),
-                },
-              ],
+              loader: contactLoader(queryClient),
             },
           ],
         },

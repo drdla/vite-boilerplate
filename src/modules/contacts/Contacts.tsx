@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
 
-const Contacts = () => {
+export const Contacts = () => {
   const { t } = useTranslation('frontend');
 
   return (
@@ -11,5 +11,3 @@ const Contacts = () => {
     </div>
   );
 };
-
-export default Contacts;

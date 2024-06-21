@@ -20,7 +20,7 @@ export const contactLoader =
     );
   };
 
-function Contact() {
+export const Contact = () => {
   const params = useParams();
   const initialData = useLoaderData() as Awaited<
     ReturnType<ReturnType<typeof loader>>
@@ -32,6 +32,4 @@ function Contact() {
   });
 
   return <div>- {contact}</div>;
-}
-
-export default Contact;
+};

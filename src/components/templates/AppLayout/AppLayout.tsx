@@ -1,10 +1,12 @@
-import { memo } from 'react';
+import { Suspense, memo } from 'react';
 import { Outlet } from 'react-router-dom';
+
+import { LoadingIndicator } from '~/components/atoms';
 
 export const AppLayout = memo(() => {
   return (
-    <div>
+    <Suspense fallback={<LoadingIndicator />}>
       <Outlet />
-    </div>
+    </Suspense>
   );
 });
