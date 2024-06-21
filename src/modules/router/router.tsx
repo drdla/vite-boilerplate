@@ -1,11 +1,13 @@
 import { QueryClient } from '@tanstack/react-query';
 import { createBrowserRouter } from 'react-router-dom';
 
-import { Contact, Contacts, contactLoader } from '~/modules/contacts';
+import { contactLoader } from '~/modules/contacts';
 
 import { AppLayout } from '~/components/templates';
 
 import App from '~/App';
+
+import { RootErrorBoundary } from './RootErrorBoundary';
 
 const queryClient = new QueryClient();
 
@@ -13,6 +15,7 @@ export const router = createBrowserRouter(
   [
     {
       element: <AppLayout />,
+      errorElement: <RootErrorBoundary />,
       children: [
         {
           path: '/',
@@ -22,9 +25,10 @@ export const router = createBrowserRouter(
           path: '/contacts',
           lazy: () =>
             import('~/modules/contacts').then(({ Contacts }) => ({
-              default: Contacts,
+              Component: Contacts,
+              // You can lazy load additional route props from the imported file, e.g.
+              // loader: contactsLoader
             })),
-          element: <Contacts />,
           errorElement: (
             <div>Something went wrong with rendering the Contacts route</div>
           ),
@@ -33,15 +37,16 @@ export const router = createBrowserRouter(
               path: ':contactId',
               lazy: () =>
                 import('~/modules/contacts').then(({ Contact }) => ({
-                  default: Contact,
+                  Component: Contact,
+                  // You can lazy load additional route props from the imported file, e.g.
+                  // loader: contactLoader
                 })),
-              element: <Contact />,
+              loader: contactLoader(queryClient),
               errorElement: (
                 <div>
                   Something went wrong with rendering the Contact details route
                 </div>
               ),
-              loader: contactLoader(queryClient),
             },
           ],
         },

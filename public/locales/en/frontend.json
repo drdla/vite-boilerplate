@@ -10,5 +10,19 @@
   "contacts": {
     "fetchedContact": "__STRING_NOT_TRANSLATED__",
     "title": "__STRING_NOT_TRANSLATED__"
+  },
+  "error": {
+    "401": {
+      "title": "__STRING_NOT_TRANSLATED__"
+    },
+    "404": {
+      "title": "__STRING_NOT_TRANSLATED__"
+    },
+    "503": {
+      "title": "__STRING_NOT_TRANSLATED__"
+    },
+    "generic": {
+      "title": "__STRING_NOT_TRANSLATED__"
+    }
   }
 }

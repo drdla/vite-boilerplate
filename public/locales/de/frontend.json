@@ -10,5 +10,19 @@
   "contacts": {
     "fetchedContact": "Kontakt mit ID {{id}} geladen",
     "title": "Kontakte"
+  },
+  "error": {
+    "401": {
+      "title": "Zugriff verweigert"
+    },
+    "404": {
+      "title": "Seite nicht gefunden"
+    },
+    "503": {
+      "title": "Seite konnte nicht geladen werden"
+    },
+    "generic": {
+      "title": "Ein unbekannter Fehler ist aufgetreten"
+    }
   }
 }
