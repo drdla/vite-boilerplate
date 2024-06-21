@@ -30,6 +30,7 @@
     "@plugin-web-update-notification/vite": "^1.7.1",
     "@tanstack/react-query": "^5.45.1",
     "@tanstack/react-query-devtools": "^5.45.1",
+    "@types/node": "^20.14.7",
     "@uidotdev/usehooks": "^2.4.1",
     "clsx": "^2.1.1",
     "i18next": "^23.11.5",
