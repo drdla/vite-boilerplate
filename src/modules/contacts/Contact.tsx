@@ -23,11 +23,11 @@ export const contactLoader =
 export const Contact = () => {
   const params = useParams();
   const initialData = useLoaderData() as Awaited<
-    ReturnType<ReturnType<typeof loader>>
+    ReturnType<ReturnType<typeof contactLoader>>
   >;
 
   const { data: contact } = useQuery({
-    ...contactDetailQuery(params?.contactId ?? ''),
+    ...contactDetailQuery(params.contactId ?? ''),
     initialData,
   });
 
