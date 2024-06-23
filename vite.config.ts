@@ -66,7 +66,7 @@ export default defineConfig({
     target: browserslistToEsbuild(),
   },
   css: {
-    transformer: 'lightningcss',
+    // transformer: 'lightningcss', // TODO: Enable once Tailwind supports Lightning CSS, which will be version 3.5 or later, see https://github.com/tailwindlabs/tailwindcss/discussions/11040#discussioncomment-7968401
   },
   esbuild: {
     /**
