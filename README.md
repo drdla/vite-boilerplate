@@ -14,7 +14,7 @@ The actual app only comes with a minimal setup, to cater to the individual needs
 - [TypeScript]
 - [React Router][reactRouter]
 - [TanStack Query (React Query)][tanStackQuery]: asynchronous state management
-- [i18next]: internationalization 'i18n'
+- [i18next][i18next]: internationalization (i18n)
 - [tailwindcss]: utility-first CSS framework
 
 ### Build / Dev Tools
