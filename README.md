@@ -11,12 +11,12 @@ It comes with all the tools and configuration you need to start developing right
 The actual app only comes with a minimal setup, to cater to the individual needs of the project:
 
 - [React]
-- [TypeScript] (a path alias `~` is set up for './src', so you can import modules from the root as `~/components/...`, `~/modules/...`, etc.)
+- [TypeScript] (a path alias `~` is set up for './src', so you can import modules from the root as `~/components/...`, `~/modules/...`, etc.) ([config](./tsconfig.json))
 - [React Router][reactRouter]: browser router
 - [TanStack Query (React Query)][tanStackQuery]: asynchronous state management
-- [i18next][i18next]: internationalization (i18n)
-- [tailwindcss]: utility class based CSS framework
-- [Google Fonts][googleFonts]: free web fonts ('Roboto'; loaded in [index.html](./index.html))
+- [i18next][i18next]: internationalization (i18n) ([config](./src/utils/i18n.ts))
+- [tailwindcss]: utility class based CSS framework ([config](./tailwind.config.js))
+- [Google Fonts][googleFonts]: free web fonts ([Roboto]; loaded in [index.html](./index.html))
 - [react-helmet]: document head manager for React
 
 ### Build / Dev Tools
@@ -29,7 +29,7 @@ The actual app only comes with a minimal setup, to cater to the individual needs
   - [pre-commit hook](/.husky/pre-commit.sh) for running lint-staged and checking types
   - [pre-push hook](/.husky/pre-push.sh) for preventing directly pushing to the main branch
 - [i18next-scanner]: scan code, extract translation keys/values, and merge them into i18n resource files ([config](./.importsortrc))
-- [import-sort]: sort JavaScript/TypeScript imports based on a [config](./.importsortrc) (similar to Python isort)
+- [import-sort]: sort JavaScript/TypeScript imports according to a [config](./.importsortrc) (similar to Python isort)
 - [lint-staged]: run linters (and other packages scripts) on git staged files ([config](./.lintstagedrc.cjs))
 - [Prettier]: format code ([config](./prettier.config.js))
 - [polyfill.io]: automatically deliver the polyfills required by the user's web browser (loaded in [index.html](./index.html))
@@ -42,9 +42,9 @@ The actual app only comes with a minimal setup, to cater to the individual needs
 
 ### Testing
 
-- [Vitest] for unit tests; files matching _.test._ are run with Vitest and the `test` package script
-- [Playwright] for end-to-end tests; files matching _.spec._ are run with Playwright and the `test:e2e` package script
-- [Storybook] for component tests ([config](./.storybook)
+- [Vitest] for unit tests; files matching _.test._ are run with Vitest and the `test` package script ([config](./vite.config.ts))
+- [Playwright] for end-to-end tests; files matching _.spec._ are run with Playwright and the `test:e2e` package script ([config](./playwright.config.js))
+- [Storybook] for component tests ([config](./.storybook))
 - [istanbul/nyc][istanbul] for code coverage reports
 
 ## Folder Structure
@@ -149,6 +149,7 @@ The scripts you will typically use are
 [React]: https://react.dev/
 [react-helmet]: https://github.com/nfl/react-helmet
 [reactRouter]: https://reactrouter.com/
+[Roboto]: https://fonts.google.com/specimen/Roboto
 [Storybook]: https://storybook.js.org/
 [Stylelint]: https://stylelint.io/
 [tailwindcss]: https://tailwindcss.com/
