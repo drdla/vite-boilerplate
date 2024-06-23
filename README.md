@@ -22,7 +22,7 @@ The actual app only comes with a minimal setup, to cater to the individual needs
 ### Build / Dev Tools
 
 - [Browserslist]: define supported browsers for frontend tools ([config](./.browserslistrc))
-- [Dev Container][devcontainer] ([config](./.devcontainer/devcontainer.json)) w/ [Docker] ([config](./.devcontainer/Dockerfile) and [Docker Compose][dockerCompose] ([config](./.devcontainer/docker-compose.yml)
+- [Dev Container][devcontainer] ([config](./.devcontainer/devcontainer.json)) w/ [Docker] ([config](./.devcontainer/Dockerfile)) and [Docker Compose][dockerCompose] ([config](./.devcontainer/docker-compose.yml))
 - [EditorConfig]: configure IDE for consistent coding style ([config](./.editorconfig))
 - [ESLint]: find and fix problems in JavaScript code ([config](./.eslintrc.json))
 - [Husky]: git hooks for automatically linting code, running tests, etc. The hooks should be set up automatically on checkout via the `prepare` package script.
