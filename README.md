@@ -1,6 +1,7 @@
 # Vite Boilerplate
 
 This is a boilerplate setup for a [Vite] based [React] app.
+
 It comes with all the tools and configuration you need to start developing right away, automatically preventing errors and adhering to conventions and best practices.
 
 ## Tech Stack
@@ -40,9 +41,12 @@ The actual app only comes with a minimal setup, to cater to the individual needs
 ## Installation
 
 This repo provides a [Dev Container][devcontainer] to enable developing in a fully pre-set up and isolated environment.
+
 To use it, you need to have [Docker] and the [VSCode extension for Dev Containers][devcontainersExtension] set up.
-When you open the project in VSCode it will show a popup informing you that the "Folder contains a Dev Container".
+
+When you open the project in VSCode, it will show a popup informing you that the "Folder contains a Dev Container".
 Click the "Reopen in container" button to start the container and open the folder in the container with VSCode configured and all recommended plugins installed. It will also install all required dependencies for you.
+
 When you open the container for the first time, the container needs to build, which might take a little time. Once it has been built, starting the container is almost instant.
 
 If you don't want to work with the Dev Container, you need to install the dependencies with `yarn install` after checking out the repo.
@@ -76,13 +80,14 @@ yarn preview
 ### Package Scripts
 
 Some package scripts are run automatically or as components of other package scripts.
+
 The scripts you will typically use are
 
 - `dev`: start the devserver to run the app locally
 - `check-npm-packages`: check for packages not listed in the package.json, unused packages, and available updates
 - `format`: lint and format the codebase
 - `i18n`: extract translation keys
-- `lint`: lint the codebase (component for `format` script)
+- `lint`: lint the codebase (component of `format` script)
 - `lint:styles`: lint the CSS of the codebase
 - `storybook`: start storybook
 - `test`: run all tests
