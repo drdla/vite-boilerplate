@@ -22,7 +22,7 @@ The actual app only comes with a minimal setup, to cater to the individual needs
 ### Build / Dev Tools
 
 - [Browserslist]: define supported browsers for frontend tools ([config](./.browserslistrc))
-- [Dev Container][devcontainer] w/ [Docker] and [Docker Compose][dockerCompose]
+- [Dev Container][devcontainer] ([config](./.devcontainer/devcontainer.json)) w/ [Docker] ([config](./.devcontainer/Dockerfile) and [Docker Compose][dockerCompose] ([config](./.devcontainer/docker-compose.yml)
 - [EditorConfig]: configure IDE for consistent coding style ([config](./.editorconfig))
 - [ESLint]: find and fix problems in JavaScript code ([config](./.eslintrc.json))
 - [Husky]: git hooks for automatically linting code, running tests, etc. The hooks should be set up automatically on checkout via the `prepare` package script.
@@ -44,7 +44,7 @@ The actual app only comes with a minimal setup, to cater to the individual needs
 
 - [Vitest] for unit tests; files matching _.test._ are run with Vitest and the `test` package script
 - [Playwright] for end-to-end tests; files matching _.spec._ are run with Playwright and the `test:e2e` package script
-- [Storybook] for component tests
+- [Storybook] for component tests ([config](./.storybook)
 - [istanbul/nyc][istanbul] for code coverage reports
 
 ## Folder Structure
