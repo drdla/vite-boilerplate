@@ -16,28 +16,29 @@ The actual app only comes with a minimal setup, to cater to the individual needs
 - [TanStack Query (React Query)][tanStackQuery]: asynchronous state management
 - [i18next][i18next]: internationalization (i18n)
 - [tailwindcss]: utility class based CSS framework
-- [Google Fonts][googleFonts]: free web fonts (Roboto)
+- [Google Fonts][googleFonts]: free web fonts ('Roboto'; loaded in [index.html](./index.html))
+- [react-helmet]: document head manager for React
 
 ### Build / Dev Tools
 
-- [Browserslist]: define supported browsers for frontend tools
+- [Browserslist]: define supported browsers for frontend tools ([config](./.browserslistrc))
 - [Dev Container][devcontainer] w/ [Docker] and [Docker Compose][dockerCompose]
-- [EditorConfig]: configure IDE for consistent coding style
-- [ESLint]: find and fix problems in JavaScript code
+- [EditorConfig]: configure IDE for consistent coding style ([config](./.editorconfig))
+- [ESLint]: find and fix problems in JavaScript code ([config](./.eslintrc.json))
 - [Husky]: git hooks for automatically linting code, running tests, etc. The hooks should be set up automatically on checkout via the `prepare` package script.
   - [pre-commit hook](/.husky/pre-commit.sh) for running lint-staged and checking types
   - [pre-push hook](/.husky/pre-push.sh) for preventing directly pushing to the main branch
-- [i18next-scanner]: scan code, extract translation keys/values, and merge them into i18n resource files.
-- [import-sort]: sort JavaScript/TypeScript imports (similar to Python isort)
-- [lint-staged]: run linters (and other packages scripts) on git staged files
-- [Prettier]: format code
-- [polyfill.io]: automatically deliver the polyfills required by the user's web browser
-- [Stylelint]: CSS linter to avoid errors and enforce conventions
-- [Vite]: super fast next generation frontend tooling
-- [million]: linter to identify and fix slow code plus compiler to automatically speed up React
+- [i18next-scanner]: scan code, extract translation keys/values, and merge them into i18n resource files ([config](./.importsortrc))
+- [import-sort]: sort JavaScript/TypeScript imports based on a [config](./.importsortrc) (similar to Python isort)
+- [lint-staged]: run linters (and other packages scripts) on git staged files ([config](./.lintstagedrc.cjs))
+- [Prettier]: format code ([config](./prettier.config.js))
+- [polyfill.io]: automatically deliver the polyfills required by the user's web browser (loaded in [index.html](./index.html))
+- [Stylelint]: CSS linter to avoid errors and enforce conventions ([config](./.stylelintrc.cjs))
+- [Vite]: super fast next generation frontend tooling ([config](./vite.config.ts))
+- [million]: linter to identify and fix slow code plus compiler to automatically speed up React ([config](./vite.config.ts))
 - [VSCode settings](./vscode/settings.json): format on save, add missing imports, update imports on file move, etc. plus [recommended VSCode extensions](./vscode/extensions.json)
 - [Webfont Download][webfontDownloadVitePlugin]: Vite plugin to automatically download and bundle Google web fonts
-- [plugin-web-update-notification]: Vite plugin to detect new releases and notify user to reload
+- [plugin-web-update-notification]: Vite plugin to detect new releases and notify user to reload ([config](./vite.config.ts))
 
 ### Testing
 
@@ -51,18 +52,18 @@ The actual app only comes with a minimal setup, to cater to the individual needs
 - `public`: files publicly accessible through the browser
   - `locales`: translation files, organized by language
 - `src`: application source code
-  - `assets`: ...
+  - `assets`: images, SVGs, etc.
   - `components`: UI components, organized according to [Atomic Design principles][atomicDesign]
-    - `atoms`: ...
-    - `molecules`: ...
-    - `organisms`: ...
-    - `templates`: ...
-  - `constants`
-  - `modules`: ...
+    - `atoms`: foundational building blocks w/o dependencies
+    - `molecules`: groups of components including other components
+    - `organisms`: pieces of functionality built from groups of components
+    - `templates`: page-level objects that place components into a layout
+  - `constants`: constant values
+  - `modules`: self-contained pieces of functionality
   - `stories`: Storybook story definitions
   - `styles`: theme and styles
   - `typings`: TypeScript type definitions and [modules](https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html)
-  - `utils`: ...
+  - `utils`: reusable functions and libraries, e.g. for string manipulation, internationalization, working with arrays, etc.
 - `e2e-tests`: end-to-end tests (unit tests are co-located with the corresponding files)
 
 ## Installation
@@ -146,6 +147,7 @@ The scripts you will typically use are
 [polyfill.io]: https://polyfill.io/
 [Prettier]: https://prettier.io/
 [React]: https://react.dev/
+[react-helmet]: https://github.com/nfl/react-helmet
 [reactRouter]: https://reactrouter.com/
 [Storybook]: https://storybook.js.org/
 [Stylelint]: https://stylelint.io/
