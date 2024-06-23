@@ -8,5 +8,5 @@
 # lint and format staged files
 npx lint-staged
 
-# verify typescript staged files
+# verify typescript types
 npx tsc --build .
