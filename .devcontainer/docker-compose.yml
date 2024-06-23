@@ -4,7 +4,7 @@ services:
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
-      target: dev # <-- this is the targeted build stage; you can also use "production"
+      target: dev # <-- use build stage 'dev' when using a shared multi-stage Dockerfile
     restart: always
     env_file:
       - ../.env
