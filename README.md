@@ -12,9 +12,10 @@ The actual app only comes with a minimal setup, to cater to the individual needs
 
 - [React]
 - [TypeScript]
-- [tailwindcss]: utility-first CSS framework
 - [React Router][reactRouter]
 - [TanStack Query (React Query)][tanStackQuery]: asynchronous state management
+- [i18next]: internationalization 'i18n'
+- [tailwindcss]: utility-first CSS framework
 
 ### Build / Dev Tools
 
@@ -107,6 +108,7 @@ The scripts you will typically use are
 [ESLint]: https://eslint.org/
 [Husky]: https://typicode.github.io/husky/
 [i18next-scanner]: https://github.com/i18next/i18next-scanner
+[i18next]: https://www.i18next.com/
 [import-sort]: https://github.com/renke/import-sort
 [istanbul]: https://istanbul.js.org/
 [lint-staged]: https://github.com/lint-staged/lint-staged
