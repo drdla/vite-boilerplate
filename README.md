@@ -11,7 +11,7 @@ It comes with all the tools and configuration you need to start developing right
 The actual app only comes with a minimal setup, to cater to the individual needs of the project:
 
 - [React]
-- [TypeScript] (a path alias '~' is set up for './src', so can import modules as '~/components/...', '~/modules/...', etc.)
+- [TypeScript] (a path alias `~` is set up for './src', so you can import modules from the root as `~/components/...`, `~/modules/...`, etc.)
 - [React Router][reactRouter]: browser router
 - [TanStack Query (React Query)][tanStackQuery]: asynchronous state management
 - [i18next][i18next]: internationalization (i18n)
