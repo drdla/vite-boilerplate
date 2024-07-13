@@ -18950,6 +18950,7 @@ __metadata:
     typescript: "npm:^5.5.2"
     typescript-eslint: "npm:^7.13.0"
     vite: "npm:^5.3.1"
+    vite-plugin-compression2: "npm:^1.1.2"
     vite-plugin-istanbul: "npm:^6.0.2"
     vite-plugin-webfont-dl: "npm:^3.9.4"
     vite-tsconfig-paths: "npm:^4.3.2"
@@ -18970,6 +18971,15 @@ __metadata:
   bin:
     vite-node: vite-node.mjs
   checksum: 10c0/0807e6501ac7763e0efa2b4bd484ce99fb207e92c98624c9f8999d1f6727ac026e457994260fa7fdb7060d87546d197081e46a705d05b0136a38b6f03715cbc2
+  languageName: node
+  linkType: hard
+
+"vite-plugin-compression2@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "vite-plugin-compression2@npm:1.1.2"
+  dependencies:
+    "@rollup/pluginutils": "npm:^5.1.0"
+  checksum: 10c0/a01bb69a26f6767f6e49cb743e373f11563cd324caa2a3d00345e26c418ac0e3d673f8bed6d0a958572dd2d2507a911d9da3c830b8413e0f6763c9f4a424ee26
   languageName: node
   linkType: hard
 

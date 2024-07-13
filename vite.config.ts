@@ -18,6 +18,7 @@ import MillionLint from '@million/lint';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import webfontDownload from 'vite-plugin-webfont-dl';
+import { compression } from 'vite-plugin-compression2';
 
 const _plugins = [
   tsconfigPaths(),
@@ -53,6 +54,8 @@ const _plugins = [
     hiddenDismissButton: true,
     logVersion: true,
   }),
+  compression(),
+  compression({ algorithm: 'brotliCompress' }),
 ];
 // Use Million compiler to speed up React app.
 _plugins.unshift(million.vite({ auto: true }));
