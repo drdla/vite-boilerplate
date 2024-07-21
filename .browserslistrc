@@ -1,4 +1,15 @@
->0.2%
->1% in DE
+# <https://github.com/browserslist/browserslist#readme>
+
+defaults and supports es6-module
+maintained node versions
+
+[production]
+
+cover 95%
 not dead
-not op_mini all
+
+> 1% in DE
+
+[development]
+
+defaults
