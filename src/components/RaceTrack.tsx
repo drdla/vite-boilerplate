@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import robotIcon from '../assets/lawn-robot-mower.svg';
 
 interface RaceTrackProps {
   gardenWidth: number;
@@ -29,6 +30,8 @@ const RaceTrack: React.FC<RaceTrackProps> = ({ gardenWidth, gardenHeight }) => {
   const [chargingTime, setChargingTime] = useState(0);
   const [speed, setSpeed] = useState(1);
   const [isReturningToLastPosition, setIsReturningToLastPosition] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [robotDirection, setRobotDirection] = useState<'left' | 'right'>('right');
 
   const trees: Obstacle[] = [
     { x: Math.floor(gardenWidth / 3), y: Math.floor(gardenHeight / 3), width: 1, height: 1 },
@@ -43,6 +46,9 @@ const RaceTrack: React.FC<RaceTrackProps> = ({ gardenWidth, gardenHeight }) => {
   const MAX_BATTERY_LEVEL = 400;
   const CHARGING_DURATION = 15; // 15 Sekunden Ladezeit
   const BASE_MOVE_INTERVAL = 1000; // Basis-Intervall für 1 Feld pro Sekunde
+
+  // Berechne die Anzahl der mähbaren Zellen (ohne Hindernisse)
+  const mowableCells = gardenWidth * gardenHeight - obstacles.reduce((sum, obstacle) => sum + obstacle.width * obstacle.height, 0);
 
   useEffect(() => {
     setMowedAreas(Array(gardenHeight).fill(null).map(() => Array(gardenWidth).fill(false)));
@@ -109,14 +115,30 @@ const RaceTrack: React.FC<RaceTrackProps> = ({ gardenWidth, gardenHeight }) => {
             return moveTowardsChargingStation(prev);
           }
 
-          // Bewege den Roboter zur nächsten Position
-          return getNextPosition(prev);
+          // Determine the next position
+          const nextPosition = getNextPosition(prev);
+
+          // Update the robot direction based on movement
+          if (nextPosition.x > prev.x) {
+            setRobotDirection('right');
+          } else if (nextPosition.x < prev.x) {
+            setRobotDirection('left');
+          }
+
+          return nextPosition;
         });
       }, BASE_MOVE_INTERVAL / speed);
 
       return () => clearInterval(interval);
     }
   }, [isSimulationRunning, gardenWidth, gardenHeight, batteryLevel, isCharging, isMowingComplete, speed, isReturningToLastPosition]);
+
+  useEffect(() => {
+    // Berechne den Fortschritt
+    const mowedCells = mowedAreas.flat().filter(cell => cell).length;
+    const newProgress = (mowedCells / mowableCells) * 100;
+    setProgress(Math.min(newProgress, 100)); // Begrenzt den Fortschritt auf maximal 100%
+  }, [mowedAreas, mowableCells]);
 
   const moveTowardsChargingStation = (currentPosition: RobotPosition): RobotPosition => {
     const dx = Math.sign(chargingStation.x - currentPosition.x);
@@ -142,98 +164,48 @@ const RaceTrack: React.FC<RaceTrackProps> = ({ gardenWidth, gardenHeight }) => {
     return currentPosition;
   };
 
+  const findNearestUnmowedCell = (currentPosition: RobotPosition): RobotPosition | null => {
+    const queue: { position: RobotPosition; distance: number }[] = [{ position: currentPosition, distance: 0 }];
+    const visited: boolean[][] = Array(gardenHeight).fill(null).map(() => Array(gardenWidth).fill(false));
+    visited[currentPosition.y][currentPosition.x] = true;
+
+    while (queue.length > 0) {
+      const { position, distance } = queue.shift()!;
+
+      if (!mowedAreas[position.y][position.x] && !isObstacle(position.x, position.y)) {
+        return position;
+      }
+
+      const directions = [
+        { dx: 1, dy: 0 },
+        { dx: 0, dy: 1 },
+        { dx: -1, dy: 0 },
+        { dx: 0, dy: -1 }
+      ];
+
+      for (const { dx, dy } of directions) {
+        const newX = position.x + dx;
+        const newY = position.y + dy;
+
+        if (isValidMove(newX, newY) && !visited[newY][newX]) {
+          queue.push({ position: { x: newX, y: newY }, distance: distance + 1 });
+          visited[newY][newX] = true;
+        }
+      }
+    }
+
+    return null; // Kein ungemähtes Feld gefunden
+  };
+
   const getNextPosition = (currentPosition: RobotPosition): RobotPosition => {
-    switch (optimizationStrategy) {
-      case 'spiral':
-        return getSpiralNextPosition(currentPosition);
-      case 'zigzag':
-        return getZigzagNextPosition(currentPosition);
-      default:
-        return getRandomNextPosition(currentPosition);
+    const nearestUnmowedCell = findNearestUnmowedCell(currentPosition);
+
+    if (nearestUnmowedCell) {
+      return moveTowardsPosition(currentPosition, nearestUnmowedCell);
+    } else {
+      setIsMowingComplete(true);
+      return moveTowardsChargingStation(currentPosition);
     }
-  };
-
-  const getRandomNextPosition = (currentPosition: RobotPosition): RobotPosition => {
-    const directions = [
-      { dx: 1, dy: 0 },
-      { dx: 0, dy: 1 },
-      { dx: -1, dy: 0 },
-      { dx: 0, dy: -1 }
-    ];
-
-    const shuffledDirections = directions.sort(() => Math.random() - 0.5);
-
-    for (const { dx, dy } of shuffledDirections) {
-      const newX = currentPosition.x + dx;
-      const newY = currentPosition.y + dy;
-
-      if (isValidMove(newX, newY) && !mowedAreas[newY][newX]) {
-        return { x: newX, y: newY };
-      }
-    }
-
-    // Wenn kein ungemähtes Feld gefunden wurde, suche das nächste ungemähte Feld
-    for (let y = 0; y < gardenHeight; y++) {
-      for (let x = 0; x < gardenWidth; x++) {
-        if (!mowedAreas[y][x] && !isObstacle(x, y)) {
-          return { x, y };
-        }
-      }
-    }
-
-    return currentPosition; // Bleibe auf der aktuellen Position, wenn alles gemäht ist
-  };
-
-  const getSpiralNextPosition = (currentPosition: RobotPosition): RobotPosition => {
-    const directions = [
-      { dx: 1, dy: 0 },
-      { dx: 0, dy: 1 },
-      { dx: -1, dy: 0 },
-      { dx: 0, dy: -1 }
-    ];
-    let directionIndex = 0;
-    let steps = 1;
-    let stepCount = 0;
-
-    while (true) {
-      const { dx, dy } = directions[directionIndex];
-      const newX = currentPosition.x + dx;
-      const newY = currentPosition.y + dy;
-
-      if (isValidMove(newX, newY) && !mowedAreas[newY][newX]) {
-        return { x: newX, y: newY };
-      }
-
-      stepCount++;
-      if (stepCount === steps) {
-        directionIndex = (directionIndex + 1) % 4;
-        stepCount = 0;
-        if (directionIndex % 2 === 0) {
-          steps++;
-        }
-      }
-
-      if (steps > Math.max(gardenWidth, gardenHeight)) {
-        return currentPosition;
-      }
-    }
-  };
-
-  const getZigzagNextPosition = (currentPosition: RobotPosition): RobotPosition => {
-    const isEvenRow = currentPosition.y % 2 === 0;
-    const dx = isEvenRow ? 1 : -1;
-    const newX = currentPosition.x + dx;
-
-    if (isValidMove(newX, currentPosition.y) && !mowedAreas[currentPosition.y][newX]) {
-      return { x: newX, y: currentPosition.y };
-    }
-
-    const newY = currentPosition.y + 1;
-    if (isValidMove(currentPosition.x, newY) && !mowedAreas[newY][currentPosition.x]) {
-      return { x: currentPosition.x, y: newY };
-    }
-
-    return currentPosition;
   };
 
   const isValidMove = (x: number, y: number): boolean => {
@@ -308,21 +280,21 @@ const RaceTrack: React.FC<RaceTrackProps> = ({ gardenWidth, gardenHeight }) => {
               top: `${tree.y * 20}px`,
               width: '20px',
               height: '20px',
-              backgroundColor: '#4a2700',
+              backgroundColor: '#8B4513',
               borderRadius: '50%',
-              boxShadow: '0 0 0 2px #228B22, 0 0 0 4px #4a2700',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.3)',
               zIndex: 5
             }}
           >
             <div style={{
               position: 'absolute',
               top: '-10px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '16px',
-              height: '16px',
+              left: '0',
+              width: '20px',
+              height: '20px',
               backgroundColor: '#228B22',
-              borderRadius: '50% 50% 0 0'
+              borderRadius: '50%',
+              boxShadow: '0 0 0 2px #006400'
             }} />
           </div>
         ))}
@@ -336,9 +308,20 @@ const RaceTrack: React.FC<RaceTrackProps> = ({ gardenWidth, gardenHeight }) => {
             height: `${bench.height * 20}px`,
             backgroundColor: '#8B4513',
             zIndex: 5,
-            borderRadius: '5px'
+            borderRadius: '5px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
           }}
-        />
+        >
+          <div style={{
+            position: 'absolute',
+            top: '2px',
+            left: '2px',
+            right: '2px',
+            height: '4px',
+            backgroundColor: '#A0522D',
+            borderRadius: '2px'
+          }} />
+        </div>
         <div
           className="charging-station"
           style={{
@@ -357,28 +340,34 @@ const RaceTrack: React.FC<RaceTrackProps> = ({ gardenWidth, gardenHeight }) => {
         >
           <div style={{ color: 'white', fontSize: '20px' }}>⚡</div>
         </div>
-        <div
-          className="robot"
+        <img
+          src={robotIcon}
+          alt="Robot Mower"
           style={{
             position: 'absolute',
             left: `${robotPosition.x * 20}px`,
             top: `${robotPosition.y * 20}px`,
             width: '20px',
             height: '20px',
-            backgroundColor: isCharging ? '#FFD700' : '#FF6347',
-            borderRadius: '50%',
-            border: '2px solid #DAA520',
-            boxShadow: '0 0 5px rgba(0,0,0,0.3)',
             zIndex: 10,
-            transition: 'left 0.2s, top 0.2s, background-color 0.3s',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
+            transition: 'left 0.2s, top 0.2s',
+            filter: isCharging ? 'hue-rotate(180deg)' : 'none',
+            transform: robotDirection === 'left' ? 'scaleX(-1)' : 'scaleX(1)',
           }}
-        >
-          <div style={{ color: 'black', fontSize: '14px' }}>🤖</div>
-        </div>
+        />
       </div>
+      <div style={{ width: '100%', backgroundColor: '#e0e0e0', borderRadius: '5px', marginTop: '10px' }}>
+        <div
+          style={{
+            width: `${progress}%`,
+            height: '20px',
+            backgroundColor: '#4CAF50',
+            borderRadius: '5px',
+            transition: 'width 0.3s ease-in-out'
+          }}
+        />
+      </div>
+      <p>Fortschritt: {Math.round(progress)}%</p>
       <p>Roboter Position: X: {robotPosition.x}, Y: {robotPosition.y}</p>
       <p>Batteriestand: {batteryLevel} / {MAX_BATTERY_LEVEL} ({Math.round(batteryLevel / MAX_BATTERY_LEVEL * 100)}%)</p>
       <p>
