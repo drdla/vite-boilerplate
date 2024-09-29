@@ -255,6 +255,18 @@ const RaceTrack: React.FC<RaceTrackProps> = ({ gardenWidth, gardenHeight }) => {
     setIsSimulationRunning(true);
   };
 
+  const cancelSimulation = () => {
+    setIsSimulationRunning(false);
+    setRobotPosition(chargingStation);
+    setMowedAreas(Array(gardenHeight).fill(null).map(() => Array(gardenWidth).fill(false)));
+    setBatteryLevel(MAX_BATTERY_LEVEL);
+    setIsCharging(false);
+    setLastMowingPosition(null);
+    setIsMowingComplete(false);
+    setChargingTime(0);
+    setIsReturningToLastPosition(false);
+  };
+
   return (
     <div className="race-track" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <h2>Gartenübersicht</h2>
@@ -386,21 +398,38 @@ const RaceTrack: React.FC<RaceTrackProps> = ({ gardenWidth, gardenHeight }) => {
           style={{ width: '200px', margin: '10px 0' }}
         />
       </div>
-      <button
-        onClick={startSimulation}
-        disabled={isSimulationRunning}
-        style={{
-          padding: '10px 20px',
-          fontSize: '16px',
-          backgroundColor: isSimulationRunning ? '#ccc' : '#4CAF50',
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: isSimulationRunning ? 'not-allowed' : 'pointer'
-        }}
-      >
-        {isSimulationRunning ? 'Simulation läuft...' : 'Simulation starten'}
-      </button>
+      <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+        <button
+          onClick={startSimulation}
+          disabled={isSimulationRunning}
+          style={{
+            padding: '10px 20px',
+            fontSize: '16px',
+            backgroundColor: isSimulationRunning ? '#ccc' : '#4CAF50',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: isSimulationRunning ? 'not-allowed' : 'pointer'
+          }}
+        >
+          {isSimulationRunning ? 'Simulation läuft...' : 'Simulation starten'}
+        </button>
+        <button
+          onClick={cancelSimulation}
+          disabled={!isSimulationRunning}
+          style={{
+            padding: '10px 20px',
+            fontSize: '16px',
+            backgroundColor: !isSimulationRunning ? '#ccc' : '#FF6347',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: !isSimulationRunning ? 'not-allowed' : 'pointer'
+          }}
+        >
+          Simulation abbrechen
+        </button>
+      </div>
       <div style={{ marginTop: '20px' }}>
         <button
           onClick={() => setOptimizationStrategy('random')}
