@@ -44,11 +44,13 @@ const RaceTrack: React.FC<RaceTrackProps> = ({ gardenWidth, gardenHeight }) => {
   const obstacles = [...trees, bench];
 
   const MAX_BATTERY_LEVEL = 400;
-  const CHARGING_DURATION = 15; // 15 Sekunden Ladezeit
-  const BASE_MOVE_INTERVAL = 1000; // Basis-Intervall für 1 Feld pro Sekunde
+  const BASE_CHARGING_DURATION = 15; // 15 seconds base charging time
+  const BASE_MOVE_INTERVAL = 1000; // Base interval for 1 field per second
 
   // Berechne die Anzahl der mähbaren Zellen (ohne Hindernisse)
   const mowableCells = gardenWidth * gardenHeight - obstacles.reduce((sum, obstacle) => sum + obstacle.width * obstacle.height, 0);
+
+  const cameraViewSize = 5; // Size of the camera view (5x5 grid)
 
   useEffect(() => {
     setMowedAreas(Array(gardenHeight).fill(null).map(() => Array(gardenWidth).fill(false)));
@@ -61,8 +63,9 @@ const RaceTrack: React.FC<RaceTrackProps> = ({ gardenWidth, gardenHeight }) => {
           if (isCharging) {
             if (prev.x === chargingStation.x && prev.y === chargingStation.y) {
               setChargingTime(time => {
-                if (time < CHARGING_DURATION) {
-                  return time + 1;
+                const adjustedChargingDuration = BASE_CHARGING_DURATION / speed;
+                if (time < adjustedChargingDuration) {
+                  return time + (1 / speed); // Increment by a fraction based on speed
                 } else {
                   setBatteryLevel(MAX_BATTERY_LEVEL);
                   setIsCharging(false);
@@ -239,6 +242,39 @@ const RaceTrack: React.FC<RaceTrackProps> = ({ gardenWidth, gardenHeight }) => {
     setIsReturningToLastPosition(false);
   };
 
+  const getCameraView = () => {
+    const view: JSX.Element[] = [];
+
+    for (let y = -Math.floor(cameraViewSize/2); y <= Math.floor(cameraViewSize/2); y++) {
+      for (let x = -Math.floor(cameraViewSize/2); x <= Math.floor(cameraViewSize/2); x++) {
+        const cellX = robotPosition.x + x;
+        const cellY = robotPosition.y + y;
+        let cellContent: JSX.Element | null = null;
+
+        if (cellX >= 0 && cellX < gardenWidth && cellY >= 0 && cellY < gardenHeight) {
+          if (x === 0 && y === 0) {
+            cellContent = <img src={robotIcon} alt="Robot" style={{ width: '100%', height: '100%', transform: robotDirection === 'left' ? 'scaleX(-1)' : 'scaleX(1)' }} />;
+          } else if (isObstacle(cellX, cellY)) {
+
+            cellContent = <div style={{ backgroundColor: '#8B4513', width: '100%', height: '100%', borderRadius: '50%' }} />;
+          } else {
+            console.log('Obstacle at 2');
+            cellContent = <div style={{ backgroundColor: (mowedAreas?.[cellY]?.[cellX] ?? false) ? '#90EE90' : '#228B22', width: '100%', height: '100%' }} />;
+          }
+        } else {
+          cellContent = <div style={{ backgroundColor: '#808080', width: '100%', height: '100%' }} />;
+        }
+
+        view.push(
+          <div key={`camera-${x}-${y}`} style={{ width: '20px', height: '20px' }}>
+            {cellContent}
+          </div>
+        );
+      }
+    }
+    return view;
+  };
+
   return (
     <div className="race-track" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <h2>Gartenübersicht</h2>
@@ -371,9 +407,13 @@ const RaceTrack: React.FC<RaceTrackProps> = ({ gardenWidth, gardenHeight }) => {
       <p>Roboter Position: X: {robotPosition.x}, Y: {robotPosition.y}</p>
       <p>Batteriestand: {batteryLevel} / {MAX_BATTERY_LEVEL} ({Math.round(batteryLevel / MAX_BATTERY_LEVEL * 100)}%)</p>
       <p>
-        {isCharging ? `Lädt... (${chargingTime}s / ${CHARGING_DURATION}s)` :
-         isReturningToLastPosition ? 'Kehrt zur letzten Position zurück' :
-         isMowingComplete ? 'Mähen abgeschlossen' : 'Mäht'}
+        {isCharging
+          ? `Lädt... (${chargingTime.toFixed(1)}s / ${(BASE_CHARGING_DURATION / speed).toFixed(1)}s)`
+          : isReturningToLastPosition
+            ? 'Kehrt zur letzten Position zurück'
+            : isMowingComplete
+              ? 'Mähen abgeschlossen'
+              : 'Mäht'}
       </p>
       <div>
         <label htmlFor="speed-slider">Geschwindigkeit: {speed} Feld(er) pro Sekunde</label>
@@ -464,6 +504,19 @@ const RaceTrack: React.FC<RaceTrackProps> = ({ gardenWidth, gardenHeight }) => {
         </button>
       </div>
       <p>Aktuelle Strategie: {optimizationStrategy}</p>
+      <div style={{ marginTop: '20px' }}>
+        <h3>Kamera-Ansicht</h3>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: `repeat(${cameraViewSize}, 20px)`,
+          gap: '1px',
+          border: '2px solid #4a4a4a',
+          padding: '5px',
+          backgroundColor: '#4a4a4a'
+        }}>
+          {getCameraView()}
+        </div>
+      </div>
     </div>
   );
 };

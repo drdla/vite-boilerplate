@@ -1,6 +1,5 @@
 import React from 'react';
 import RaceTrack from './components/RaceTrack';
-// import BatteryStatus from './components/BatteryStatus';
 
 function App() {
   return (
@@ -8,9 +7,6 @@ function App() {
       <h1>Rasenmähroboter Steuerung</h1>
       <div className="main-content">
         <RaceTrack gardenWidth={30} gardenHeight={20} />
-        {/* <div className="control-panel">
-          <BatteryStatus batteryLevel={75} />
-        </div> */}
       </div>
     </div>
   );
