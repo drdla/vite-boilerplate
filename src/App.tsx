@@ -1,12 +1,8 @@
-import viteLogo from '/vite.svg';
-import { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Trans, useTranslation } from 'react-i18next';
-import { Outlet } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Link, Outlet } from 'react-router-dom';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   const { t } = useTranslation('frontend');
 
   // Set locale for update notice somewhere.
@@ -15,28 +11,30 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>{t('app.metaTitle')}</title>
-        <meta name="description" content={t('app.metaDescription')} />
+        <title>Contacts Dashboard</title>
+        <meta
+          name="description"
+          content="Manage your contacts with ease."
+        />
       </Helmet>
 
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="" alt="Vite logo" />
-        </a>
+      <div className="flex min-h-dvh flex-col items-center justify-center ">
+        <div className="text-center">
+          <h1 className="mb-4 text-4xl font-bold text-gray-900">
+            Contacts Dashboard
+          </h1>
+          <p className="mb-8 text-lg text-gray-600">
+          Manage your contacts with ease.
+          </p>
+          <Link
+            to="/contacts"
+            className="rounded-lg bg-blue-600 px-6 py-3 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            View Contacts
+          </Link>
+        </div>
       </div>
 
-      <h1>{t('app.i18nExample')}</h1>
-
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          {t('app.counterValue', { count })}
-        </button>
-        <p>
-          <Trans i18nKey="app.editAppToTestHMR">
-            Edit <i>src/App.tsx</i> and save to test HMR
-          </Trans>
-        </p>
-      </div>
       <Outlet />
     </>
   );
